@@ -22,7 +22,7 @@ def create_person_list(people: List[dict]) -> List[Person]:
             person.wife = Person.people.get(person_dict["wife"])
             if person.wife:
                 person.wife.husband = person
-        if 'husband' in person_dict and person_dict["husband"]:
+        if "husband" in person_dict and person_dict["husband"]:
             person.husband = Person.people.get(person_dict["husband"])
             if person.husband:
                 person.husband.wife = person
