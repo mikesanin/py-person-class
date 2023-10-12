@@ -15,15 +15,15 @@ class Person:
 def create_person_list(people: List[dict]) -> List[Person]:
     person_list = []
     for person_dict in people:
-        name = person_dict['name']
-        age = person_dict['age']
+        name = person_dict["name"]
+        age = person_dict["age"]
         person = Person(name, age)
-        if 'wife' in person_dict and person_dict['wife']:
-            person.wife = Person.people.get(person_dict['wife'])
+        if "wife" in person_dict and person_dict["wife"]:
+            person.wife = Person.people.get(person_dict["wife"])
             if person.wife:
                 person.wife.husband = person
-        if 'husband' in person_dict and person_dict['husband']:
-            person.husband = Person.people.get(person_dict['husband'])
+        if 'husband' in person_dict and person_dict["husband"]:
+            person.husband = Person.people.get(person_dict["husband"])
             if person.husband:
                 person.husband.wife = person
         person_list.append(person)
