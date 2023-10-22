@@ -1,30 +1,32 @@
-from typing import List, Union
+from typing import List, Optional
 
 
 class Person:
-    people = {}
+    people: dict[str, "Person"] = {}
 
-    def __init__(self, name: str, age: int) -> None:
-        self.name = name
-        self.age = age
-        self.wife: Union[None, "Person"] = None
-        self.husband: Union[None, "Person"] = None
+    def __init__(self, name: str, age: int, spouse: Optional["Person"] = None):
+        self.name: str = name
+        self.age: int = age
+        self.spouse: Optional['Person'] = spouse
         Person.people[name] = self
 
-
 def create_person_list(people: List[dict]) -> List[Person]:
-    person_list = []
-    for person_dict in people:
-        name = person_dict["name"]
-        age = person_dict["age"]
-        person = Person(name, age)
-        if "wife" in person_dict and person_dict["wife"]:
-            person.wife = Person.people.get(person_dict["wife"])
-            if person.wife:
-                person.wife.husband = person
-        if "husband" in person_dict and person_dict["husband"]:
-            person.husband = Person.people.get(person_dict["husband"])
-            if person.husband:
-                person.husband.wife = person
+    person_list: List[Person] = []
+
+    for person_data in people:
+        name: str = person_data["name"]
+        age: int = person_data["age"]
+        spouse_name: str = person_data.get("wife") or person_data.get("husband")
+
+        spouse: Optional[Person] = Person.people.get(spouse_name)
+
+        person: Person = Person(name, age, spouse)
         person_list.append(person)
+
+        if spouse:
+            if "wife" in person_data:
+                person.wife = spouse
+            else:
+                person.husband = spouse
+
     return person_list
