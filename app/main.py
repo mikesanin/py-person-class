@@ -7,10 +7,12 @@ class Person:
     def __init__(self, name: str, age: int, spouse: Optional["Person"] = None):
         self.name: str = name
         self.age: int = age
-        self.spouse: Optional['Person'] = spouse
+        self.spouse: Optional["Person"] = spouse
         Person.people[name] = self
 
-def create_person_list(people: List[dict]) -> List[Person]:
+
+def create_person_list(people: List[dict])
+-> List[Person]:
     person_list: List[Person] = []
 
     for person_data in people:
