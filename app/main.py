@@ -4,7 +4,7 @@ from typing import List, Optional
 class Person:
     people: dict[str, "Person"] = {}
 
-def __init__(self, name: str, age: int, spouse: Optional["Person"] = None): -> None:
+def __init__(self, name: str, age: int, spouse: Optional["Person"] = None) -> None:
         self.name: str = name
         self.age: int = age
         self.spouse: Optional["Person"] = spouse
