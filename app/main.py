@@ -4,7 +4,6 @@ from typing import List, Optional
 class Person:
     people: dict[str, "Person"] = {}
 
-
     def __init__(
         self,
         name: str,
