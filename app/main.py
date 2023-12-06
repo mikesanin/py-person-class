@@ -5,7 +5,6 @@ class Person:
     people: dict[str, "Person"] = {}
 
 
-class Person:
     def __init__(
         self,
         name: str,
