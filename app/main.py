@@ -1,40 +1,15 @@
-from typing import List, Optional
+from models import Actor
+from managers import ActorManager
 
+if __name__ == "__main__":
+    Actor.objects = ActorManager()
 
-class Person:
-    people: dict[str, "Person"] = {}
+    Actor.objects.create(1, "Emma", "Watson")
+    Actor.objects.create(2, "Daniel", "Radclife")
+    print(Actor.objects.all())
 
-    def __init__(
-        self,
-        name: str,
-        age: int,
-        spouse: Optional["Person"] = None
-    ) -> None:
-        self.name: str = name
-        self.age: int = age
-        self.spouse: Optional["Person"] = spouse
-        Person.people[name] = self
+    Actor.objects.update(2, "Daniel", "Radcliffe")
+    print(Actor.objects.all())
 
-
-def create_person_list(people: List[dict]) -> List[Person]:
-    person_list: List[Person] = []
-
-    for person_data in people:
-        name: str = person_data["name"]
-        age: int = person_data["age"]
-        spouse_name: str = (person_data.get("wife")
-                            if "wife" in person_data
-                            else person_data.get("husband"))
-
-        spouse: Optional[Person] = Person.people.get(spouse_name)
-
-        person: Person = Person(name, age, spouse)
-        person_list.append(person)
-
-        if spouse:
-            if "wife" in person_data:
-                person.wife = spouse
-            else:
-                person.husband = spouse
-
-    return person_list
+    Actor.objects.delete(1)
+    print(Actor.objects.all())
