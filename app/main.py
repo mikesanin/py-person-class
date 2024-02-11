@@ -12,9 +12,9 @@ def create_person_list(people: list) -> list:
     for person in people:
         if person["name"] not in Person.people:
             Person(person["name"], person["age"])
-            
+
     sorted_people = sorted(Person.people.values(), key=lambda x: x.name)
-    
+
     for person in people:
         if "wife" in person and person["wife"]:
             sorted_people[person["name"]].wife = Person.people[person["wife"]]
