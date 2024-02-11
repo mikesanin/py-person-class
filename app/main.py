@@ -8,18 +8,22 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
+    Person.people = {}  # Reset the people dictionary
     for person in people:
         if person["name"] not in Person.people:
             Person(person["name"], person["age"])
 
+    # Sort people by their names to preserve order
+    sorted_people = sorted(Person.people.values(), key=lambda x: x.name)
+    
     for person in people:
         if "wife" in person and person["wife"]:
-            Person.people[person["name"]].wife = Person.people[person["wife"]]
+            sorted_people[person["name"]].wife = Person.people[person["wife"]]
         elif "husband" in person and person["husband"]:
-            Person.people[person["name"]].husband = \
+            sorted_people[person["name"]].husband = \
                 Person.people[person["husband"]]
 
-    return list(Person.people.values())
+    return sorted_people
 
 
 people = [
