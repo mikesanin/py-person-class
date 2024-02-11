@@ -6,6 +6,7 @@ class Person:
         self.age = age
         Person.people[name] = self
 
+
 def create_person_list(people: list) -> list:
     Person.people = {}  # Reset the people dictionary
     for person in people:
@@ -22,6 +23,7 @@ def create_person_list(people: list) -> list:
                 Person.people[person["husband"]]
 
     return sorted_people
+
 
 people = [
     {"name": "Ross", "age": 30, "wife": "Rachel"},
